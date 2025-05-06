@@ -1,54 +1,46 @@
-### ✅ `OpenAi SDK For Agents` (Introduction)
+# 🧠 OpenAI Agents SDK – Roman Urdu Style Guide
 
-````markdown
-# 🤖 OpenAI Agents SDK – Agentic AI App Starter
+## 📌 What is OpenAI Agents SDK?
 
-This project demonstrates how to build intelligent agent-based applications using the **OpenAI Agents SDK** — a lightweight, Python-first framework to develop agentic workflows using LLMs.
+**OpenAI Agents SDK** aik lightweight aur easy-to-use SDK hai jo aapko smart AI agents banane mein madad deta hai. Pehle is per OpenAI ne ek experimental project "Swarm" banaya tha — yeh usi ka production-ready version hai.
 
----
-
-## 🚀 What is the OpenAI Agents SDK?
-
-The **Agents SDK** enables you to create LLM-based agents that can:
-- Perform tasks based on instructions.
-- Use tools (Python functions) to interact with data or APIs.
-- Delegate subtasks to other agents using handoffs.
-- Validate input and behavior through guardrails.
-- Visualize workflows using built-in tracing.
-
-> ✅ It's a production-ready upgrade of OpenAI's experimental **Swarm** framework.
+Is SDK ke zariye aap real-world applications ke liye powerful agents design kar sakte hain, bina kisi complex code ke.
 
 ---
 
-## ✨ Key Features
+## 🔑 Core Components (Primitives)
 
-- 🔁 **Agent Loop** – Built-in loop to run tools and return results to the LLM until the task is complete.
-- 🐍 **Python-first** – Use native Python to orchestrate agents and tools.
-- 🤝 **Handoffs** – Delegate specific tasks to other agents.
-- ✅ **Guardrails** – Validate and secure input before agents act.
-- 🧰 **Function Tools** – Any Python function can be converted into a tool with automatic schema validation (Pydantic).
-- 🧠 **Tracing** – Debug, visualize, and monitor workflows.
+### 1. Agents
+
+Yeh Large Language Models (LLMs) hote hain jo aap instructions aur tools ke sath configure karte ho.
+**Example:** Aap bolte ho `Tum aik helpful assistant ho` aur agar zarurat ho to tools bhi dete ho.
+
+### 2. Handoffs
+
+Aik agent doosray agent ko task assign kar sakta hai.
+**Example:** Agar aik agent ko technical kaam milta hai, woh doosray expert agent ko handoff kar dega.
+
+### 3. Guardrails
+
+Yeh input validation ke liye hote hain. Agar input invalid ya empty ho to agent kaam hi nahi karega.
 
 ---
 
-## 📦 Installation
+## ⚙️ Built-in Features
 
-Make sure you have Python 3.8+ installed.
+* **Agent loop**: Tool ko call karo → result LLM ko do → repeat until done.
+* **Python-first**: Python ke andar kaam karo, koi naye framework ya syntax seekhne ki zarurat nahi.
+* **Multi-agent coordination (handoffs)**: Agents aapas mein tasks share kar sakte hain.
+* **Guardrails**: Input validation aur error handling.
+* **Function tools**: Kisi bhi Python function ko tool bana sakte ho.
+* **Tracing**: Agent kya kar raha hai — visualize aur debug karo.
+
+---
+
+## 🚀 Installation
 
 ```bash
 pip install openai-agents
-````
-
-Set your OpenAI API key before running the app:
-
-```bash
-export OPENAI_API_KEY=sk-...your_api_key_here...
-```
-
-(Optional) Enable tracing to visualize agent behavior:
-
-```bash
-export AGENTS_TRACE=1
 ```
 
 ---
@@ -58,83 +50,44 @@ export AGENTS_TRACE=1
 ```python
 from agents import Agent, Runner
 
-agent = Agent(name="Assistant", instructions="You are a helpful assistant")
+agent = Agent(
+    name="Assistant",
+    instructions="You are a helpful assistant"
+)
 
 result = Runner.run_sync(agent, "Write a haiku about recursion in programming.")
 print(result.final_output)
 ```
 
-**Sample Output:**
+🔁 **Output Example:**
 
 ```
-# Code within the code,
-# Functions calling themselves,
-# Infinite loop's dance.
+Code within the code,
+Functions calling themselves,
+Infinite loop's dance.
 ```
 
 ---
 
-## 🧰 Add a Python Tool
+## 🔐 API Key Setup
 
-Turn any Python function into a tool using the `@tool` decorator:
-
-```python
-from agents import tool
-
-@tool
-def add(a: int, b: int) -> int:
-    """Add two numbers."""
-    return a + b
-```
-
-You can now register this tool with your agent so it can call it when needed.
-
----
-
-## 🧠 Core Concepts
-
-| Primitive     | Description                                                      |
-| ------------- | ---------------------------------------------------------------- |
-| **Agent**     | An LLM with a name, tools, and instructions.                     |
-| **Runner**    | Orchestrates agent loops, tools, and interactions.               |
-| **Tool**      | Any Python function exposed to an agent as a callable operation. |
-| **Handoff**   | Delegate task to another agent.                                  |
-| **Guardrail** | Validates input or controls behavior before execution.           |
-| **Tracing**   | Built-in debugger and visualizer for agentic flows.              |
-
----
-
-## 📈 Tracing and Debugging
-
-To enable tracing for debugging and monitoring:
+Before running the code, set your OpenAI API key in environment variables:
 
 ```bash
-export AGENTS_TRACE=1
+export OPENAI_API_KEY='YOUR_OPENAI_KEY'
 ```
 
-You'll receive detailed logs of:
+---
 
-* Tool usage
-* Agent thoughts
-* Inputs/outputs
-* Errors (if any)
+## ✅ Summary
+
+* Simple aur powerful SDK.
+* Python ke sath direct integration.
+* LLM agents, input guardrails, aur handoffs support karta hai.
+* Real-world AI apps ke liye tayyar hai.
 
 ---
 
-## 📚 Learn More
+**Made for devs who think in Python, speak in logic, and build in AI.**
 
-* [OpenAI Agents SDK Docs](https://platform.openai.com/docs/agents)
-* [Pydantic for Input Validation](https://docs.pydantic.dev/)
-* [OpenAI Python Client](https://github.com/openai/openai-python)
 
----
-
-## 🪪 License
-
-Licensed under the [MIT License](LICENSE)
-
----
-
-## 🙋‍♂️ Author
-
-Built with ❤️ using the OpenAI Agents SDK. Contributions, feedback, and suggestions are welcome!
